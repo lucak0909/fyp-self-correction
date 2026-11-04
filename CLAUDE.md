@@ -102,6 +102,9 @@ cp .env.example .env     # fill in ANTHROPIC_API_KEY
 
 Docker Desktop is optional (`--sandbox docker`, the CLI default) but
 `SubprocessSandbox` (`--sandbox subprocess`) always works with no extra setup.
+`tests/test_docker_sandbox.py` skips itself (not a failure) when Docker
+isn't reachable locally -- CI always has it, since GitHub's `ubuntu-latest`
+runners ship Docker preinstalled and running.
 
 ## Testing
 
