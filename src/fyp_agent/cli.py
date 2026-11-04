@@ -19,10 +19,7 @@ from .sandbox.subprocess_sandbox import SubprocessSandbox
 
 app = typer.Typer(add_completion=False)
 
-_BENCHMARKS = {
-    "fixture": "local_fixture.LocalFixtureLoader",
-    "humaneval": "humaneval.HumanEvalLoader",
-}
+_BENCHMARKS = {"fixture": "local_fixture.LocalFixtureLoader", "humaneval": "humaneval.HumanEvalLoader"}
 
 
 def _load_benchmark(name: str) -> BenchmarkLoader:
@@ -75,8 +72,7 @@ def run(
     store = ExperimentStore(db)
     rid = run_id or str(uuid.uuid4())[:8]
 
-    num_conditions = len(conditions.split(","))
-    print(f"Run {rid}: {len(problems)} problems x {num_conditions} conditions, model={model}")
+    print(f"Run {rid}: {len(problems)} problems x {len(conditions.split(','))} conditions, model={model}")
     run_experiment(
         run_id=rid,
         problems=problems,

@@ -10,16 +10,9 @@ PROBLEM = Problem(
     entry_point="f", test_code="assert f() == 1",
 )
 
-PASS_RESULT = ExecutionResult(
-    passed=True, stdout="", stderr="", exit_code=0, timed_out=False, duration_s=0.1
-)
+PASS_RESULT = ExecutionResult(passed=True, stdout="", stderr="", exit_code=0, timed_out=False, duration_s=0.1)
 FAIL_RESULT = ExecutionResult(
-    passed=False,
-    stdout="",
-    stderr="AssertionError: boom",
-    exit_code=1,
-    timed_out=False,
-    duration_s=0.1,
+    passed=False, stdout="", stderr="AssertionError: boom", exit_code=1, timed_out=False, duration_s=0.1
 )
 
 
