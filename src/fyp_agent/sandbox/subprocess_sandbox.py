@@ -18,7 +18,7 @@ import tempfile
 import time
 from pathlib import Path
 
-from .base import ExecutionResult
+from .base import ExecutionResult, decode_stream
 
 
 class SubprocessSandbox:
@@ -54,8 +54,8 @@ class SubprocessSandbox:
                 stdout, stderr, exit_code = proc.stdout, proc.stderr, proc.returncode
             except subprocess.TimeoutExpired as e:
                 timed_out = True
-                stdout = e.stdout.decode("utf-8", "replace") if isinstance(e.stdout, bytes) else (e.stdout or "")
-                stderr = e.stderr.decode("utf-8", "replace") if isinstance(e.stderr, bytes) else (e.stderr or "")
+                stdout = decode_stream(e.stdout)
+                stderr = decode_stream(e.stderr)
                 exit_code = None
             duration_s = time.monotonic() - start
 

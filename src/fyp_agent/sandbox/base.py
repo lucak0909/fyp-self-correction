@@ -46,3 +46,12 @@ class Sandbox(Protocol):
         """Execute `solution_code` followed by `test_code` in an isolated
         environment and report whether the tests passed."""
         ...
+
+
+def decode_stream(value: str | bytes | None) -> str:
+    """Normalise a subprocess timeout's captured stdout/stderr, which may
+    arrive as str, bytes, or None depending on the platform and whether any
+    output was captured before the timeout fired."""
+    if isinstance(value, bytes):
+        return value.decode("utf-8", "replace")
+    return value or ""
