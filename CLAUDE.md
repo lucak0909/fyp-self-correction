@@ -80,6 +80,10 @@ don't need to inherit anything, just match the method signature.
 - No speculative abstraction. This is a research platform for one
   dissertation, not a library for external users — don't add config options,
   providers, or benchmarks that aren't actually being used yet.
+- `ruff check .` must pass (enforced in CI, see Testing below); it covers
+  pyflakes, import sorting, pyupgrade, and bugbear. `ruff format` is
+  installed but *not* enforced yet — the codebase isn't run through it, so
+  don't reformat unrelated code as a drive-by in an unrelated PR.
 - Dependencies are declared in `pyproject.toml` only; don't hand-edit a
   `requirements.txt` (there isn't one).
 
@@ -97,9 +101,9 @@ Docker Desktop is optional (`--sandbox docker`, the CLI default) but
 
 ## Testing
 
-- Run `pytest` before every commit. CI (`.github/workflows/ci.yml`) re-runs
-  it on every push and PR, and `main` is protected — a PR cannot merge
-  with a failing or absent check.
+- Run `pytest` and `ruff check .` before every commit. CI
+  (`.github/workflows/ci.yml`) re-runs both on every push and PR, and
+  `main` is protected — a PR cannot merge with a failing or absent check.
 - PRs also get a **diff coverage** gate: CI runs `diff-cover` against the
   PR's base branch and fails if newly added/changed lines are less than
   80% covered by tests. This targets *new* code only, not the whole repo

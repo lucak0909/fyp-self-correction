@@ -116,7 +116,7 @@ class ExperimentStore:
     def close(self) -> None:
         self._conn.close()
 
-    def __enter__(self) -> "ExperimentStore":
+    def __enter__(self) -> ExperimentStore:
         return self
 
     def __exit__(self, *exc) -> None:
