@@ -3,8 +3,9 @@ name: CI
 on:
   push:
     branches: [main]
-  pull_request:
-    branches: [main]
+  # No branch filter: stacked PRs (e.g. one branch based on another, not on
+  # main) still need CI to run against their actual base branch.
+  pull_request: {}
 
 jobs:
   test:
