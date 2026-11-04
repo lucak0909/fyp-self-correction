@@ -1,0 +1,32 @@
+[project]
+name = "fyp-agent"
+version = "0.1.0"
+description = "When Does Self-Correction Help? An empirical study of feedback-driven repair in LLM coding agents."
+requires-python = ">=3.10"
+dependencies = [
+    "anthropic>=0.40.0",
+    "pydantic>=2.6",
+    "typer>=0.12",
+    "python-dotenv>=1.0",
+    "datasets>=2.19",
+    "rich>=13.7",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-cov>=5.0",
+    "matplotlib>=3.8",
+    "pandas>=2.2",
+]
+
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
