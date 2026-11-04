@@ -100,6 +100,13 @@ Docker Desktop is optional (`--sandbox docker`, the CLI default) but
 - Run `pytest` before every commit. CI (`.github/workflows/ci.yml`) re-runs
   it on every push and PR, and `main` is protected — a PR cannot merge
   with a failing or absent check.
+- PRs also get a **diff coverage** gate: CI runs `diff-cover` against the
+  PR's base branch and fails if newly added/changed lines are less than
+  80% covered by tests. This targets *new* code only, not the whole repo
+  (large parts of `cli.py`, `eval/`, `llm/anthropic_client.py` etc. are
+  currently untested and that's a separate, pre-existing gap — don't let a
+  PR touching those files skip past the gate by only adding more untested
+  code on top; add tests for the lines you change).
 - **Tests must never require `ANTHROPIC_API_KEY` or network access.** They
   exercise `SubprocessSandbox`, feedback strategies, code extraction, and
   `Trajectory` logic directly — no real LLM calls. If you add agent-loop
