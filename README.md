@@ -1,6 +1,6 @@
 # When Does Self-Correction Help?
 
-An empirical study of feedback-driven repair in LLM coding agents — Final Year Project (ISE), Luca Knierim, supervised by Mark Burkley.
+An empirical study of feedback-driven repair in LLM coding agents — Final Year Project (ISE), Luca Knierim, supervised by Chris Exton.
 
 LLM coding agents are often given a chance to review and revise their own output before returning it ("self-correction" / "self-refinement" / "self-repair"). The literature disagrees on whether this helps: some work reports large gains, other work finds models struggle to recognise their own errors without an external signal, and can even break correct answers while burning extra time and tokens.
 
