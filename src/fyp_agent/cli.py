@@ -55,7 +55,7 @@ def run(
     model: str = typer.Option("claude-sonnet-5", help="Anthropic model id"),
     max_repair_rounds: int = typer.Option(2, help="Repair attempts after the initial generation"),
     timeout_s: float = typer.Option(10.0, help="Per-execution sandbox timeout, seconds"),
-    sandbox: str = typer.Option("subprocess", help="subprocess or docker"),
+    sandbox: str = typer.Option("docker", help="docker or subprocess"),
     db: Path = typer.Option(Path("data/runs/experiments.db"), help="SQLite log path"),
     run_id: str = typer.Option(None, help="Defaults to a fresh UUID"),
 ) -> None:
