@@ -84,6 +84,10 @@ don't need to inherit anything, just match the method signature.
   pyflakes, import sorting, pyupgrade, and bugbear. `ruff format` is
   installed but *not* enforced yet — the codebase isn't run through it, so
   don't reformat unrelated code as a drive-by in an unrelated PR.
+- `mypy` must pass (enforced in CI). Third-party packages with no type
+  stubs get a `[[tool.mypy.overrides]]` entry in `pyproject.toml` rather
+  than a blanket `ignore_missing_imports` — keep that scoped per-package
+  so a real stub gap elsewhere doesn't go unnoticed.
 - Dependencies are declared in `pyproject.toml` only; don't hand-edit a
   `requirements.txt` (there isn't one).
 
@@ -98,11 +102,14 @@ cp .env.example .env     # fill in ANTHROPIC_API_KEY
 
 Docker Desktop is optional (`--sandbox docker`, the CLI default) but
 `SubprocessSandbox` (`--sandbox subprocess`) always works with no extra setup.
+`tests/test_docker_sandbox.py` skips itself (not a failure) when Docker
+isn't reachable locally -- CI always has it, since GitHub's `ubuntu-latest`
+runners ship Docker preinstalled and running.
 
 ## Testing
 
-- Run `pytest` and `ruff check .` before every commit. CI
-  (`.github/workflows/ci.yml`) re-runs both on every push and PR, and
+- Run `pytest`, `ruff check .`, and `mypy` before every commit. CI
+  (`.github/workflows/ci.yml`) re-runs all three on every push and PR, and
   `main` is protected — a PR cannot merge with a failing or absent check.
 - PRs also get a **diff coverage** gate: CI runs `diff-cover` against the
   PR's base branch and fails if newly added/changed lines are less than

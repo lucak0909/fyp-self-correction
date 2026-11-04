@@ -65,7 +65,8 @@ def run(
     loader = _load_benchmark(benchmark)
     problems = loader.load(limit=limit)
     if not problems:
-        raise typer.Exit("No problems loaded.")
+        typer.echo("No problems loaded.", err=True)
+        raise typer.Exit(code=1)
 
     llm = AnthropicClient(model=model)
     sbx = _load_sandbox(sandbox)
