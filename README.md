@@ -73,12 +73,25 @@ pytest
 
 Covers sandbox isolation (pass/fail/syntax-error/timeout), every feedback strategy's leak boundaries (e.g. `self_reflection` must never see the execution result), code-block extraction, and trajectory analysis (including detecting when a repair round breaks an already-correct solution).
 
+## Report
+
+`report/` contains the IEEE-format interim report (`main.tex` + `refs.bib`). No local LaTeX install is required to edit it, but compiling needs one. Verified to compile cleanly with TeX Live:
+
+```bash
+pdflatex -interaction=nonstopmode main.tex
+bibtex main
+pdflatex -interaction=nonstopmode main.tex
+pdflatex -interaction=nonstopmode main.tex
+```
+
+Two placeholders need filling in before submission: the Academic Integrity Declaration (standard UL wording) and Appendix A (the supervisor email authorising AI use).
+
 ## Status
 
 Tracking the proposal's milestones:
 
 - [x] Month 1 — literature review, research design
 - [x] Month 2 — core agent loop + sandboxed execution environment
-- [ ] Month 3 — pluggable feedback system (done) + evaluation harness (done) + pilot cost estimate (next)
-- [ ] Month 4 — LiveCodeBench integration, interim report
+- [x] Month 3 — pluggable feedback system + evaluation harness + CI/CD pipeline
+- [ ] Month 4 — pilot cost estimate (next), LiveCodeBench integration, interim report (drafted, pending placeholders above)
 - [ ] Months 5-8 — full experiments, analysis, dissertation
