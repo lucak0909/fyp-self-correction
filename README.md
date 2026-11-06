@@ -84,7 +84,7 @@ pdflatex -interaction=nonstopmode main.tex
 pdflatex -interaction=nonstopmode main.tex
 ```
 
-Two placeholders need filling in before submission: the Academic Integrity Declaration (standard UL wording) and Appendix A (the supervisor email authorising AI use).
+The Academic Integrity Declaration, the AI-use declaration, the supervisor email appendix, and the Acknowledgment are not yet in the document; they are being added closer to submission rather than carried as placeholders through drafting.
 
 ## Status
 
